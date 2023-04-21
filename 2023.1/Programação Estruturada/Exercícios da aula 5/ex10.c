@@ -8,7 +8,7 @@ int main() {
     int numeroDigitado, somaPositivos = 0, quantidadePositivos = 0;
     float media;
 
-    while (quantidadePositivos < 10) { // quantidade < 10
+    while (quantidadePositivos < 10) {
         printf("Digite um número inteiro positivo: ");
         scanf("%d", &numeroDigitado);
 
