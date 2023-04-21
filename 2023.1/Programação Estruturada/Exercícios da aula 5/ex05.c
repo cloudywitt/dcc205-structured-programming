@@ -5,15 +5,13 @@
 #include <stdio.h>
 
 int main() {
-    int par = 2, somaDosPares, cont;
+    int somaPares, parAtual, contador;
 
-    for (cont = 0; cont < 50; cont++) {
-        somaDosPares += par;
-
-        par += 2;
+    while (contador < 50) {
+        parAtual += 2;
+        somaPares += parAtual;
+        contador++;
     }
 
-    printf("A soma dos 50 primeiros pares vale: %d\n", somaDosPares);
-
-    return 0;
+    printf("Soma dos 50 primeiros pares: %d\n", somaPares);
 }
