@@ -6,13 +6,13 @@ até N em ordem decrescente.*/
 #include <stdio.h>
 
 int main() {
-    int num, cont;
+    int number;
 
-    printf("Digite um número inteiro: ");
-    scanf("%d", &num);
+    printf("Enter an integer: ");
+    scanf("%d", &number);
 
-    for (cont = num; cont >= 0; cont--) {
-        printf("%d ", cont);
+    for (number; number >= 0; number--) {
+        printf("%d ", number);
     }
 
     printf("\n");
