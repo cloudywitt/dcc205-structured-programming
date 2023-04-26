@@ -6,13 +6,13 @@ números maiores que 0.*/
 #include <stdio.h>
 
 int main() {
-    int multiploDe3 = 3, cont;
+    int multiples3 = 3, count;
 
-    printf("Os 5 primeiros múltiplos de 3: ");
-    for (cont = 0; cont < 5; cont++) { // verificar se é melhor colocar só "cont" ou se deixa "cont = 0".
-        printf("%d ", multiploDe3);
+    printf("The 5 first multiples of 3 are: ");
+    for (count = 0; count < 5; count++) {
+        printf("%d ", multiples3);
 
-        multiploDe3 += 3;
+        multiples3 += 3;
     }
 
     printf("\n");
