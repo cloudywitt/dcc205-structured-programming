@@ -6,17 +6,19 @@
 #include <stdio.h>
 
 int main() {
-    int num, cont, impar = 1;
+    int number, count, odd;
 
-    printf("Digite um número inteiro: ");
-    scanf("%d", &num);
+    printf("Enter an integer: ");
+    scanf("%d", &number);
 
-    printf("Os %d primeiros números naturais ímpares: ", num);
+    printf("The first %d odd numbers are: ", number);
 
-    for (cont; cont < num; cont++) {
-        printf("%d ", impar);
+    odd = 1;
+
+    for (count = 0; count < number; count++) {
+        printf("%d ", odd);
         
-        impar += 2;
+        odd += 2;
     }   
 
     printf("\n");
