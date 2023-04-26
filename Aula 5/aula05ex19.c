@@ -5,14 +5,14 @@
 #include <stdio.h>
 
 int main() {
-    int numerador = 1, denominador = 1;
-    float somaDasFrações;
+    int numerator = 1, denominator = 1;
+    float sumFractions;
 
-    while (numerador <= 99 && denominador <= 55) {
-        somaDasFrações += (float) numerador / denominador;
-        numerador += 2;
-        denominador++;
+    while (numerator <= 99 && denominator <= 55) {
+        sumFractions += (float) numerator / denominator;
+        numerator += 2;
+        denominator++;
     }
 
-    printf("O valor da expressão S é %f\n", somaDasFrações);
+    printf("S = %f\n", sumFractions);
 }
