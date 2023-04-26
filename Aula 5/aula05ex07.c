@@ -6,15 +6,16 @@ o resultado na tela.*/
 #include <stdio.h>
 
 int main() {
-    int contador;
-    float valorUsuario, soma;
+    int count;
+    float num, sum;
 
-    for (contador = 0; contador < 10; contador++) {
-        printf("Digite um número: ");
-        scanf("%f", &valorUsuario);
+    printf("Enter 10 numbers:\n");
+    for (count = 1; count < 11; count++) {
+        printf("%d: ", count);
+        scanf("%f", &num);
 
-        soma += valorUsuario;
+        sum += num;
     }
 
-    printf("A soma dos valores informados deu %.1f.\n", soma);
+    printf("The sum is %.1f.\n", sum);
 }
