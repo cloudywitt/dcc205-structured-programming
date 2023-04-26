@@ -4,20 +4,20 @@
 /* 6. Faça um programa que mostre uma contagem regressiva na tela, iniciando em 10 e terminando em
 0. Mostre uma mensagem “FIM!” após a contagem*/
 #include <stdio.h>
-#include <unistd.h> // Para usar o sleep(), que faz o programa esperar pelo tempo determinado (segundos).
+#include <unistd.h> // For sleep() function
 
 int main() {
-    int contagem = 10;
+    int countDown = 10;
 
-    printf("%d\n", contagem);
+    printf("%d\n", countDown);
 
-    while (contagem > 0) {
+    while (countDown > 0) {
         sleep(1);       
-        contagem--;
-        printf("%d\n", contagem);
+        countDown--;
+        printf("%d\n", countDown);
     }
 
-    printf("FIM!\n");
+    printf("End\n");
 
     return 0;
 }
