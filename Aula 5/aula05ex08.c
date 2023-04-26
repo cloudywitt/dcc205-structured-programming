@@ -5,19 +5,20 @@
 #include <stdio.h>
 
 int main() {
-    float soma = 0, media, valorUsuario;
-    int contador;
+    float average;
+    int sum, count, num;
 
-    for (contador = 0; contador < 10; contador++) {
-        printf("Digite um número: ");
-        scanf("%f", &valorUsuario);
+    printf("Enter 10 integer:\n");
+    for (count = 1; count < 11; count++) {
+        printf("%d: ", count);
+        scanf("%d", &num);
 
-        soma += valorUsuario;
+        sum += num;
     }
 
-    media = soma / 10;
+    average = (float) sum / 10;
 
-    printf("A média dos valores é %.1f\n", media);
+    printf("The average is: %.1f.\n", average);
 
     return 0;
 }
