@@ -5,25 +5,26 @@
 #include <stdio.h>
 
 int main() {
-    int contador;
-    float numeroLido, maiorNumeroLido, menorNumeroLido;
+    int count;
+    float num, maxNum, minNum;
 
-    for (contador = 0; contador < 10; contador++) {
-        printf("Digite um número: ");
-        scanf("%f", &numeroLido);
+    printf("Enter 10 numbers:\n");
+    for (count = 1; count < 11; count++) {
+        printf("%d: ", count);
+        scanf("%f", &num);
 
-        if (contador == 0) {
-            maiorNumeroLido = numeroLido;
-            menorNumeroLido = numeroLido;
-        } else if (numeroLido > maiorNumeroLido) {
-            maiorNumeroLido = numeroLido;
-        } else if (numeroLido < menorNumeroLido) {
-            menorNumeroLido = numeroLido;
+        if (count == 0) {
+            maxNum = num;
+            minNum = num;
+        } else if (num > maxNum) {
+            maxNum = num;
+        } else if (num < minNum) {
+            minNum = num;
         }
     }
 
-    printf("Maior valor lido: %.1f\n", maiorNumeroLido);
-    printf("Menor valor lido: %.1f\n", menorNumeroLido);
+    printf("The highest number is: %.1f\n", maxNum);
+    printf("The smallest number is: %.1f\n", minNum);
 
     return 0;
 }
