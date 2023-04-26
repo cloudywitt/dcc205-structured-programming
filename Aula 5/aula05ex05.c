@@ -5,13 +5,13 @@
 #include <stdio.h>
 
 int main() {
-    int somaPares, parAtual, contador;
+    int sumEven, even, count;
 
-    while (contador < 50) {
-        parAtual += 2;
-        somaPares += parAtual;
-        contador++;
+    while (count < 50) {
+        even += 2;
+        sumEven += even;
+        count++;
     }
 
-    printf("Soma dos 50 primeiros pares: %d\n", somaPares);
+    printf("The sum of the first 50 even numbers is: %d\n", sumEven);
 }
