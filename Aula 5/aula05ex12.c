@@ -7,21 +7,21 @@ número, com exceção dele próprio. Exemplo: A soma dos divisores do número 6
 #include <stdio.h>
 
 int main() {
-    int numero, somaDivisoresNum, divisor, contador;
+    int num, sumDivisors, divisor, count;
 
-    printf("Digite um número inteiro: ");
-    scanf("%d", &numero);
+    printf("Enter an integer: ");
+    scanf("%d", &num);
 
-    printf("A soma dos divisores de %d é ", numero);
-    for (divisor = 1; divisor <= numero; divisor++) {
+    printf("The sum of the divisors of %d is: ", num);
+    for (divisor = 1; divisor <= num; divisor++) {
         if (divisor == 1) {
-            somaDivisoresNum = (numero == 1) ? 0 : 1; // Se for 1, recebe zero, pois não há outro divisior além dele mesmo.
-            printf("%d", somaDivisoresNum);
-        } else if (numero == divisor && somaDivisoresNum > 1) {
-            printf(" = %d", somaDivisoresNum);
-        } else if (numero != divisor && numero % divisor == 0) {
+            sumDivisors = (num == 1) ? 0 : 1; // If num is equal to 1, 0 because there's no other divisor instead of itself
+            printf("%d", sumDivisors);
+        } else if (num == divisor && sumDivisors > 1) { // If in the end there's more than 1 divisor, print "=" sing 
+            printf(" = %d", sumDivisors);
+        } else if (num != divisor && num % divisor == 0) { // The first condition prevents the number itself from being checked as a divisor
             printf(" + %d", divisor);
-            somaDivisoresNum += divisor;
+            sumDivisors += divisor;
         }
     }
 
