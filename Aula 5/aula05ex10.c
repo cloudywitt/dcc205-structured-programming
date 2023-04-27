@@ -5,22 +5,22 @@
 #include <stdio.h>
 
 int main() {
-    int numeroDigitado, somaPositivos = 0, quantidadePositivos = 0;
-    float media;
+    int num, sumPositive = 0, positivesCount = 0;
+    float average;
 
-    while (quantidadePositivos < 10) {
-        printf("Digite um número inteiro positivo: ");
-        scanf("%d", &numeroDigitado);
+    while (positivesCount < 10) {
+        printf("Enter %d positive integers: ", 10 - positivesCount);
+        scanf("%d", &num);
 
-        if (numeroDigitado > 0) {
-            somaPositivos += numeroDigitado;
-            quantidadePositivos++;
+        if (num > 0) {
+            sumPositive += num;
+            positivesCount++;
         }
     }
 
-    media = (float) somaPositivos / quantidadePositivos;
+    average = (float) sumPositive / positivesCount;
 
-    printf("A média dos inteiros positivos digitados é %.1f\n", media);
+    printf("The average is %.1f\n", average);
 
     return 0;
 }
