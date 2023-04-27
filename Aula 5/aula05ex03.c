@@ -6,15 +6,12 @@
 #include <stdio.h>
 
 int main() {
-    int number, count, odd;
+    int number, count, odd = 1;
 
     printf("Enter an integer: ");
     scanf("%d", &number);
 
     printf("The first %d odd numbers are: ", number);
-
-    odd = 1;
-
     for (count = 0; count < number; count++) {
         printf("%d ", odd);
         
