@@ -6,17 +6,17 @@ número 66 são: 1, 2, 3, 6, 11, 22, 33 e 66. */
 #include <stdio.h>
 
 int main() {
-    int numero, contador;
+    int num, count;
 
-    printf("Digite um número inteiro positivo: ");
-    scanf("%d", &numero);
+    printf("Enter a positive integer: ");
+    scanf("%d", &num);
 
-    printf("Os divisores do número %d são: 1", numero);
-    for (contador = 2; contador <= numero; contador++) {
-        if (contador == numero) {
-            printf(" e %d", contador);
-        } else if (numero % contador == 0) {
-            printf(", %d", contador);
+    printf("The divisors of %d are: 1", num);
+    for (count = 2; count <= num; count++) {
+        if (count == num) {
+            printf(" and %d", count);
+        } else if (num % count == 0) {
+            printf(", %d", count);
         }
     }
 
