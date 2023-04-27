@@ -11,23 +11,19 @@ chamado triângulo de Floyd:
 #include <stdio.h>
 
 int main() {
-    int linhaAtual, linhaDesejada;
-    int baseAtual, baseDesejada, preenchimentoDaBase;
+    int row, rowChoosed;
+    int lineLenght, number = 1;
 
-    printf("Quantidade de linhas para o Triângulo de Floyd: ");
-    scanf("%d", &linhaDesejada);
+    printf("Enter how much Floyd's Triangle lines do you want to see: ");
+    scanf("%d", &rowChoosed);
 
-    baseDesejada = 1;
-    preenchimentoDaBase = 1;
-
-    for (linhaAtual = 1; linhaAtual <= linhaDesejada; linhaAtual++) {
-        for (baseAtual = 1; baseAtual <= baseDesejada; baseAtual++) {
-            printf("%d ", preenchimentoDaBase);
-            preenchimentoDaBase++;
+    for (row = 1; row <= rowChoosed; row++) {
+        for (lineLenght = 1; lineLenght <= row; lineLenght++) { // Because line's lenght's equal to its row number
+            printf("%d ", number);
+            number++;
         }
 
         printf("\n");
-        baseDesejada++;
     }
 
     return 0;
