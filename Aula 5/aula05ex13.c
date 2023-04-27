@@ -6,15 +6,15 @@ múltiplos de 3 ou 5.*/
 #include <stdio.h>
 
 int main() {
-    int numNatural, numero, somaMultiplosDe3ou5 = 0;
+    int nauturalNum, sumMultiplesOf3or5 = 0;
 
-    for (numNatural = 0; numNatural < 1000; numNatural++) {
-        if (numNatural % 3 == 0 || numNatural % 5 == 0) {
-            somaMultiplosDe3ou5 += numNatural;
+    for (nauturalNum = 0; nauturalNum < 1000; nauturalNum++) {
+        if (nauturalNum % 3 == 0 || nauturalNum % 5 == 0) {
+            sumMultiplesOf3or5 += nauturalNum;
         }
     }
 
-    printf("A soma de todos os naturais múltiplos de 3 ou 5 abaixo de 1.000 é %d.\n", somaMultiplosDe3ou5);
+    printf("The sum of all natural numbers, multiples of 3 or 5 less than 1000 is: %d.\n", sumMultiplesOf3or5);
 
     return 0;
 }
