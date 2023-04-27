@@ -6,26 +6,26 @@ negativo. O programa tem de retornar o maior e o menor número lido.*/
 #include <stdio.h>
 
 int main() {
-    int numero, maiorNumeroDigitado = 0, menorNumeroDigitado = 0;
+    int num, maxNum = 0, minNum = 0;
 
-    while (1) { // Loop infinito
-        printf("Digite um número inteiro (negativo para sair): ");
-        scanf("%d", &numero);
+    while (1) {
+        printf("Enter an integer (negative to exit): ");
+        scanf("%d", &num);
 
-        if (numero < 0) {
+        if (num < 0) {
             break;
-        } else if (maiorNumeroDigitado == 0 && menorNumeroDigitado == 0) {
-            maiorNumeroDigitado, menorNumeroDigitado = numero;
-        } else if (numero > maiorNumeroDigitado) {
-            maiorNumeroDigitado = numero;
-        } else if (numero < menorNumeroDigitado) {
-            menorNumeroDigitado = numero;
+        } else if (maxNum == 0 && minNum == 0) {
+            maxNum, minNum = num;
+        } else if (num > maxNum) {
+            maxNum = num;
+        } else if (num < minNum) {
+            minNum = num;
         }
         
     }
 
-    printf("Maior número lido: %d\n", maiorNumeroDigitado);
-    printf("Menor número lido: %d\n", menorNumeroDigitado);
+    printf("Max number: %d\n", maxNum);
+    printf("Min number: %d\n", minNum);
 
     return 0;
 }
