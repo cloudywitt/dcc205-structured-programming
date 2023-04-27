@@ -7,17 +7,17 @@ qualquer Hn.*/
 #include <stdio.h>
 
 int main() {
-    int enesimoDenominador, contador;
-    float somaDosHarmonicos = 1;
+    int n, counter;
+    float hn = 1;
 
-    printf("Digite um n: ");
-    scanf("%d", &enesimoDenominador);
+    printf("Enter a number n: ");
+    scanf("%d", &n);
 
-    for (contador = 1; contador <= enesimoDenominador; contador++) {
-        somaDosHarmonicos += (float) 1 / contador;
+    for (counter = 1; counter <= n; counter++) {
+        hn += (float) 1 / counter;
     }
 
-    printf("Hn = %f", somaDosHarmonicos);
+    printf("Hn = %f", hn);
 
     return 0;
 }
