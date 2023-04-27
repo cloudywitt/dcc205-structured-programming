@@ -8,23 +8,23 @@ dessa sequência são: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.*/
 #include <stdio.h>
 
 int main() {
-    int contador, enesimoTermoFibonacci, numAnterior, anteriorAoAnterior, enesimoEscolhido;
+    int counter, nthFiboNum, previousNum, prevPreviousNum, nthChoosed;
 
-    printf("Digite um iteiro maior ou igual a zero: ");
-    scanf("%d", &enesimoEscolhido);
+    printf("Enter an integer greater or equal to 0: ");
+    scanf("%d", &nthChoosed);
 
-    for (contador = 0; contador < enesimoEscolhido; contador++) {
-        if (contador == 0) {
-            enesimoTermoFibonacci = 0;
-        } else if (contador == 1) {
-            numAnterior = 0;
-            enesimoTermoFibonacci = 1;
+    for (counter = 0; counter < nthChoosed; counter++) {
+        if (counter == 0) {
+            nthFiboNum = 0;
+        } else if (counter == 1) {
+            previousNum = 0;
+            nthFiboNum = 1;
         } else {
-            anteriorAoAnterior = numAnterior; // O antigo número anterior agora fica anterior ao anterior
-            numAnterior = enesimoTermoFibonacci; // O atual número anterior é o enésimo termo da fibonacci do número anterior
-            enesimoTermoFibonacci = numAnterior + anteriorAoAnterior; // Fibonacci = (Fn - 1) + (Fn - 2)
+            prevPreviousNum = previousNum; // The old previousNum is now before previousNum
+            previousNum = nthFiboNum; // The now previousNum is the fibonacci sequence number before
+            nthFiboNum = previousNum + prevPreviousNum; // Fibonacci = (Fn - 1) + (Fn - 2)
         }
     }
 
-    printf("O %dº termo da sequência de Fibonacci é %d.\n", enesimoEscolhido ,enesimoTermoFibonacci);
+    printf("The %dth fibonacci sequence number is %d.\n", nthChoosed ,nthFiboNum);
 }
