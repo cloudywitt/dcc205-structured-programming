@@ -6,21 +6,21 @@
 #include <stdio.h>
 
 int main() {
-    int numero, numeroAnalisado, divisoresDeNumero;
+    int num, count, numDivisors;
 
-    printf("Digite um número inteiro maior do que 1: ");
-    scanf("%d", &numero);
+    printf("Enter an integer greater or equal to 1: ");
+    scanf("%d", &num);
 
-    for (numeroAnalisado = 1; numeroAnalisado <= numero; numeroAnalisado++) {
-        if (numero % numeroAnalisado == 0) {
-            divisoresDeNumero++;
+    for (count = 1; count <= num; count++) {
+        if (num % count == 0) {
+            numDivisors++;
         }
     }
 
-    if (divisoresDeNumero > 2) {
-        printf("%d não é primo.\n", numero);
+    if (numDivisors > 2) {
+        printf("%d's not prime.\n", num);
     } else {
-        printf("%d é primo.\n", numero);
+        printf("%d's prime.\n", num);
     }
 
     return 0;
