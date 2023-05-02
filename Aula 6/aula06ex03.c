@@ -7,7 +7,7 @@ mostre todos os valores lidos juntamente com a média dos valores.*/
 
 int main() {
     int index;
-    float num, numSum, numVector[5], average;
+    float numSum, numVector[5], average;
 
     printf("Enter 5 numbers:\n");
     for (index = 0; index < 5; index++) {
