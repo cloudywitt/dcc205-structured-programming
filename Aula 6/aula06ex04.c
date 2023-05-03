@@ -8,12 +8,12 @@ X e Y. */
 #include <stdio.h>
 
 int main() {
-    int index, index1, index2;
+    int i, index1, index2;
     float numbers[8], choosenNumbersSum;
 
     printf("Enter 8 numbers:\n");
-    for (index = 0; index < 8; index++) {
-        scanf("%f", &numbers[index]);
+    for (i = 0; i < 8; i++) {
+        scanf("%f", &numbers[i]);
     }
 
     printf("Now choose 2 of them by their index [0-7]: ");
