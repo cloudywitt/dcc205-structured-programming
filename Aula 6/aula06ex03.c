@@ -6,13 +6,13 @@ mostre todos os valores lidos juntamente com a média dos valores.*/
 #include <stdio.h>
 
 int main() {
-    int index;
+    int i;
     float numSum, numVector[5], average;
 
     printf("Enter 5 numbers:\n");
-    for (index = 0; index < 5; index++) {
-        scanf("%f", &numVector[index]);
-        numSum += numVector[index];
+    for (i = 0; i < 5; i++) {
+        scanf("%f", &numVector[i]);
+        numSum += numVector[i];
     }
 
     average = numSum / 5;
