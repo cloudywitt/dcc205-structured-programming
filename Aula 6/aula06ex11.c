@@ -8,26 +8,26 @@ Os conjuntos têm, no máximo, 20 elementos. Imprima os dois conjuntos de númer
 #include <math.h>
 
 int main() {
-    float a[20];
-    float squaredA[20];
+    float nums[20];
+    float squaredNums[20];
     int i;
 
     for (i = 0; i < 20; i++) {
         printf("Enter a number: ");
-        scanf("%f", &a[i]);
+        scanf("%f", &nums[i]);
     }
 
     printf("Set A: ");
     for (i = 0; i < 20; i++) {
-        printf("%.1f ", a[i]);
+        printf("%.1f ", nums[i]);
     }
 
     printf("\n");
 
     printf("Set A squared: ");
     for (i = 0; i < 20; i++) {
-        squaredA[i] = pow(a[i], 2);
-        printf("%.1f ", squaredA[i]);
+        squaredNums[i] = pow(nums[i], 2);
+        printf("%.1f ", squaredNums[i]);
     }    
 
     printf("\n");
