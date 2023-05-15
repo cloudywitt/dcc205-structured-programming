@@ -26,7 +26,7 @@ int main() {
         secondaryDiagonal--;
     }
 
-    printf("The sum of the elements that do not belong to the main diagonal and the secondary diagonal is: %d\n", sum);
+    printf("The sum of the elements that do not belong to both main diagonal and secondary diagonal is: %d\n", sum);
 
     return 0;
 }
