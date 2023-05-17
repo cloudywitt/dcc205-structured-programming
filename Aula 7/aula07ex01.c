@@ -7,15 +7,14 @@ estrutura lida.*/
 #include <stdio.h>
 #include <string.h>
 
-struct registration {
+struct Registration {
     char name[50];
     int age;
     char address[50];
-
 };
 
 int main() {
-    struct registration user;
+    struct Registration user;
 
     printf("Name: ");
     fgets(user.name, sizeof(user.name), stdin);
