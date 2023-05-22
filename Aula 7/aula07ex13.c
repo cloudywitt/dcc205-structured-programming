@@ -22,15 +22,12 @@ enum Month {
 };
 
 int main() {
-    enum Month choosedMonth;
-    int input;
+    int month;
 
     printf("Enter an integer to represent a month (1-12): ");
-    scanf("%d", &input);
+    scanf("%d", &month);
 
-    choosedMonth = input;
-
-    switch (choosedMonth) {
+    switch (month) {
         case JANUARY:
             printf("January\n");
             printf("31 days\n");
