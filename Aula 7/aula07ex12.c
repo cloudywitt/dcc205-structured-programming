@@ -5,21 +5,21 @@
 que leia um valor inteiro do teclado e exiba o dia da semana correspondente.*/
 #include <stdio.h>
 
-enum week {
-    Sunday,
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday
+enum Week {
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
 };
 
 int main() {
-    enum week day;
+    enum Week day;
     int input;
 
-    printf("Enter an integer which represents a day of the week from Sunday to Saturday: ");
+    printf("Enter an integer to represent a day of the week (1-7): ");
     scanf("%d", &input);
 
     day = input;
