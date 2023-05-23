@@ -9,7 +9,7 @@ meio da seguinte fórmula: V = π * raio² * altura em que π = 3.1414592.*/
 
 const float PI = 3.1414592;
 
-float volumeOfCylinder(float radius, float height) {
+float cylinderVolume(float radius, float height) {
     float volume;
 
     volume = PI * pow(radius, 2) * height;
@@ -28,7 +28,7 @@ int main() {
     printf("Now the height of the same cylinder: ");
     scanf("%f", &height);
 
-    volume = volumeOfCylinder(radius, height);
+    volume = cylinderVolume(radius, height);
 
     printf("The volume is %.1f\n", volume);
 
