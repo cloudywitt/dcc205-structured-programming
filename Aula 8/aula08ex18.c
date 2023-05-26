@@ -47,7 +47,7 @@ int main() {
 
     float taylorSinOfAngle = taylorSin(angle);
 
-    printf("The taylor sin (from 0 to 5) of %.1f° is %f\n",angle, taylorSinOfAngle);
+    printf("The taylor sin (from 0 to 5) of %.1f° is %f\n", angle, taylorSinOfAngle);
 
     return 0;
 }
