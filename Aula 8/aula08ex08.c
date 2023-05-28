@@ -6,14 +6,15 @@ perfeito é um número inteiro não negativo que pode ser expresso como o quadra
 outro número inteiro. Exemplos: 1, 4, 9.*/
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 
-int isSquare(int num) {
+bool isSquare(int num) {
     int isSquare;
 
     if (sqrt(num) == (int) sqrt(num)) {
-        isSquare = 1;
+        isSquare = true;
     } else {
-        isSquare = 0;
+        isSquare = false;
     }
 
     return isSquare;
