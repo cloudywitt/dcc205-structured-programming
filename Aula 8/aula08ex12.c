@@ -4,9 +4,10 @@
 /* 12. Escreva uma função que receba um número inteiro positivo e retorne o maior fator
 primo desse número.*/
 #include <stdio.h>
+#include <stdbool.h>
 
-int isPrime(int num) {
-    int isPrime = 0;
+bool isPrime(int num) {
+    int isPrime;
     int divisorsCount = 0;
 
     for (int i = 1; i <= num; i++) {
@@ -15,10 +16,10 @@ int isPrime(int num) {
         }
     }
 
-    if (divisorsCount > 2) {
-        isPrime = 0;
-    } else {
-        isPrime = 1;
+    if (divisorsCount == 2) {
+        isPrime = true;
+    } else if (divisorsCount > 2) {
+        isPrime = false;
     }
 
     return isPrime;
