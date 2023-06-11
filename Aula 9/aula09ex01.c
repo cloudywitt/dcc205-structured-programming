@@ -7,20 +7,32 @@ mostre na tela quantas linhas esse arquivo possui.*/
 #include <string.h>
 #include <stdlib.h>
 
-int main() {
-    char fileName[30];
+void getStr(char *str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
 
-    printf("Enter a file name + extension: ");
-    fgets(fileName, sizeof(fileName), stdin);
-    fileName[strcspn(fileName, "\n")] = '\0';
+FILE* openFile(char *name, const char * restrict mode) {
+    FILE* fname = fopen(name, mode);
 
-    FILE *userFile = fopen(fileName, "r");
-
-    if (userFile == NULL) {
-        printf("File not found.\n");
+    if (fname == NULL) {
+        printf("File not found\n");
 
         exit(1);
     }
+
+    return fname;
+}
+
+int main() {
+    // Input
+    char fileName[30];
+
+    printf("Enter a file name (with extension): ");
+    getStr(fileName, sizeof(fileName));
+
+    // File operation
+    FILE* userFile = openFile(fileName, "r");
 
     char buffer[255];
     int linesCount = 0;
@@ -29,9 +41,10 @@ int main() {
         linesCount++;
     }
 
-    printf("The file has %d lines\n", linesCount);
-
     fclose(userFile);
+
+    // Output
+    printf("The file has %d lines\n", linesCount);
 
     return 0;
 }
