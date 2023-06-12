@@ -10,47 +10,52 @@ nome do arquivo a ser salvo.*/
 #include <string.h>
 #include <ctype.h>
 
-int main() {
-    // Get files' names from the user
-    char fileName[30];
+void getStr(char *str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
 
-    printf("Enter the text file name (with extension): ");
-    fgets(fileName, sizeof(fileName), stdin);
-    fileName[strcspn(fileName, "\n")] = '\0';
+FILE* openFile(char *name, const char * restrict mode) {
+    FILE* fname = fopen(name, mode);
 
-    char fileUppercaseName[30];
-
-    printf("Enter the output text file name (with extension): ");
-    fgets(fileUppercaseName, sizeof(fileUppercaseName), stdin);
-    fileUppercaseName[strcspn(fileUppercaseName, "\n")] = '\0';
-
-    // Open files
-    FILE* filePtr = fopen(fileName, "r");
-
-    if (filePtr == NULL) {
+    if (fname == NULL) {
         printf("File not found\n");
 
         exit(1);
     }
 
-    FILE* fileUppercasePtr = fopen(fileUppercaseName, "w");
+    return fname;
+}
 
-    if (fileUppercasePtr == NULL) {
-        printf("Couldn't create output file\n");
-
-        exit(1);
-    }
-
-    // File operation
+void convertToUpper(FILE* file, FILE* fileUpper) {
     while (true) {
-        char c = fgetc(filePtr);
+        char c = fgetc(file);
 
-        if (feof(filePtr)) {
+        if (feof(file)) {
             break;
         }
 
-        fputc(toupper(c), fileUppercasePtr);
+        fputc(toupper(c), fileUpper);
     }
+}
+
+int main() {
+    // Get user input
+    char fileName[30];
+
+    printf("Enter the text file name (with extension): ");
+    getStr(fileName, sizeof(fileName));
+
+    char fileUppercaseName[30];
+
+    printf("Enter the output text file name (with extension): ");
+    getStr(fileUppercaseName, sizeof(fileUppercaseName));
+
+    // File operation
+    FILE* filePtr = openFile(fileName, "r");
+    FILE* fileUppercasePtr = openFile(fileUppercaseName, "w");
+
+    convertToUpper(filePtr, fileUppercasePtr);
 
     fclose(filePtr);
     fclose(fileUppercasePtr);
