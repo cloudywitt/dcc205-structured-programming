@@ -30,8 +30,9 @@ int main() {
     while (fscanf(shoppingList, "%s %d %f", name, &quantity, &price) != EOF) {
         totalPrice += quantity * price;
         }
-
+    
     printf("Total price: $%.2f\n", totalPrice);
+    fclose(shoppingList);
 
     return 0;
 }

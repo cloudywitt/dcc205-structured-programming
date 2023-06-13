@@ -39,5 +39,7 @@ int main() {
 
     } while (phoneNumber != 0);
 
+    fclose(registration);
+    
     return 0;
 }
