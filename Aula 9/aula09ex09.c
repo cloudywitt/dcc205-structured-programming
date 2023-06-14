@@ -49,10 +49,10 @@ int main() {
         int age = getAge(birthDay, birthMonth, birthYear);
 
         fprintf(newUsersData, "Name: %s. Age: %d\n", name, age);
-        
-        fclose(usersData);
-        fclose(newUsersData);
     }
-
+    
+    fclose(usersData);
+    fclose(newUsersData);
+    
     return 0;
 }
