@@ -50,6 +50,9 @@ int main() {
 
         fprintf(newUsersData, "Name: %s. Age: %d\n", name, age);
     }
-
+    
+    fclose(usersData);
+    fclose(newUsersData);
+    
     return 0;
 }
