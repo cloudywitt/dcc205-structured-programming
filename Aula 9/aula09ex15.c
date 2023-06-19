@@ -6,35 +6,40 @@ armazenar esses números em um arquivo binário.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* file = fopen(fname, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (file == NULL) {
-        printf("Couldn't open %s\n", fname);
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return file;
+    return filePtr;
+}
+
+void fwriteNumBin(int* numbers, int size) {
+    FILE* binPtr = openFile("Files/numbers.bin", "wb");
+
+    int numbersWritten = fwrite(numbers, sizeof(int), size, binPtr);
+
+    if (numbersWritten == 0) {
+        printf("Error while writing to file\n");
+    }
+
+    fclose(binPtr);
 }
 
 int main() {
-    FILE* numbersBinFilePtr = openFile("numbers.bin", "wb");
+    // Input
     int numbers[100];
-    int numbersWritten = 0;
 
     for (int i = 0; i < 100; i++) {
         printf("Enter a number: ");
         scanf("%d", &numbers[i]);
     }
 
-    numbersWritten = fwrite(&numbers, sizeof(int), 100, numbersBinFilePtr);
-
-    if (numbersWritten == 0) {
-        printf("Error while writing to file\n");
-    }
-
-    fclose(numbersBinFilePtr);
+    fwriteNumBin(numbers, 100);
 
     return 0;
 }
