@@ -9,6 +9,18 @@ quando o usuário digitar um número negativo.*/
 #include <stdbool.h>
 #include <math.h>
 
+FILE* openFile(char* name, const char * restrict mode) {
+    FILE* fname = fopen(name, mode);
+
+    if (fname == NULL) {
+        printf("Error while oppening %s\n", name);
+
+        exit(1);
+    }
+
+    return fname;
+}
+
 unsigned int convertToBinary(int decimal) {
     unsigned int binary = 0;
     int i = 0;
@@ -33,18 +45,6 @@ unsigned int convertToBinary(int decimal) {
     return binary;
 }
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* filePtr = fopen(fname, mode);
-
-    if (filePtr == NULL) {
-        printf("Error while openning %s\n", fname);
-
-        exit(1);
-    }
-
-    return filePtr;
-}
-
 int main() {
     int numDecimal = 0;
     FILE* binNumsFile = openFile("binary-numbers.txt", "w");    
@@ -60,8 +60,9 @@ int main() {
         unsigned int numBinary = convertToBinary(numDecimal);
 
         fprintf(binNumsFile, "%d\n", numBinary);
-
     }
+
+    fclose(binNumsFile);
 
     return 0;
 }
