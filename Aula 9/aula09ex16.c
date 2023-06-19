@@ -10,35 +10,32 @@ informar o nome do arquivo.*/
 #include <string.h>
 #include <ctype.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* file = fopen(fname, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (file == NULL) {
-        printf("Couldn't open %s\n", fname);
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return file;
+    return filePtr;
 }
 
-int main() {
-    char fileName[30];
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
 
-    printf("Enter a txt file name (with extension): ");
-    fgets(fileName, sizeof(fileName), stdin);
-    fileName[strcspn(fileName, "\n")] = '\0';
-
-    FILE* filePtr = openFile(fileName, "r");
-
-    int lettersCount[26];
+void fcountLetters(char* fname, int* lettersCountArray) {
+    FILE* filePtr = openFile(fname, "r");
 
     while (true) {
         char c = fgetc(filePtr);
 
         for (int i = 0; i < 26; i++) { 
             if (toupper(c) == 'A' + i) {
-                lettersCount[i]++;
+                lettersCountArray[i]++;
             }
         }
 
@@ -48,7 +45,21 @@ int main() {
     }
 
     fclose(filePtr);
+}
 
+int main() {
+    // Input
+    char fileName[30];
+
+    printf("Enter the file name (with extension): ");
+    getStr(fileName, sizeof(fileName));
+
+    // Letter Counting
+    int lettersCount[26]; // Numbers of letter found from A to Z
+
+    fcountLetters(fileName, lettersCount);
+
+    // Output
     printf("In %s...\n", fileName);
     for (int i = 0; i < 26; i++) {
         if (lettersCount[i] != 0) {
