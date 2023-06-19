@@ -1,14 +1,14 @@
 # Text files for file headling class
-Aula\ 9/poem.txt
-Aula\ 9/passwords.txt
-Aula\ 9/shopping-list.txt
-Aula\ 9/users-data.txt
-Aula\ 9/matrix.txt
-Aula\ 9/matriz.txt
-Aula\ 9/vetor.txt
-Aula\ 9/students-info.txt
+Aula\ 9/Files/poem.txt
+Aula\ 9/Files/passwords.txt
+Aula\ 9/Files/shopping-list.txt
+Aula\ 9/Files/users-data.txt
+Aula\ 9/Files/matrix.txt
+Aula\ 9/Files/matriz.txt
+Aula\ 9/Files/vetor.txt
+Aula\ 9/Files/students-info.txt
 
 # Binary files for file headling class
-Aula\ 9/numbers.bin
-Aula\ 9/numbers2.bin
-Aula\ 9/athletes-info.bin
+Aula\ 9/Files/numbers.bin
+Aula\ 9/Files/numbers2.bin
+Aula\ 9/Files/athletes-info.bin
