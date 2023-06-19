@@ -10,16 +10,11 @@ nome do arquivo a ser salvo.*/
 #include <string.h>
 #include <ctype.h>
 
-void getStr(char *str, int size) {
-    fgets(str, size, stdin);
-    str[strcspn(str, "\n")] = '\0';
-}
-
-FILE* openFile(char *name, const char * restrict mode) {
+FILE* openFile(char* name, const char * restrict mode) {
     FILE* fname = fopen(name, mode);
 
     if (fname == NULL) {
-        printf("File not found\n");
+        printf("Error while oppening %s\n", name);
 
         exit(1);
     }
@@ -27,38 +22,45 @@ FILE* openFile(char *name, const char * restrict mode) {
     return fname;
 }
 
-void convertToUpper(FILE* file, FILE* fileUpper) {
-    while (true) {
-        char c = fgetc(file);
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
 
-        if (feof(file)) {
+void fconvertToUpper(char* fname, char* outputfname) {
+    FILE* filePtr = openFile(fname, "r");
+    FILE* fileUpperPtr = openFile(outputfname, "w");
+
+    while (true) {
+        char c = fgetc(filePtr);
+
+        if (feof(filePtr)) {
             break;
         }
 
-        fputc(toupper(c), fileUpper);
+        fputc(toupper(c), fileUpperPtr);
     }
+
+    fclose(filePtr);
+    fclose(fileUpperPtr);
+
+    printf("Check %s\n", outputfname);
 }
 
 int main() {
-    // Get user input
+    // Input
     char fileName[30];
 
-    printf("Enter the text file name (with extension): ");
+    printf("Enter the file name (with extension): ");
     getStr(fileName, sizeof(fileName));
 
     char fileUppercaseName[30];
 
-    printf("Enter the output text file name (with extension): ");
+    printf("Enter the output file name (with extension): ");
     getStr(fileUppercaseName, sizeof(fileUppercaseName));
-
-    // File operation
-    FILE* filePtr = openFile(fileName, "r");
-    FILE* fileUppercasePtr = openFile(fileUppercaseName, "w");
-
-    convertToUpper(filePtr, fileUppercasePtr);
-
-    fclose(filePtr);
-    fclose(fileUppercasePtr);
     
+    // Main
+    fconvertToUpper(fileName, fileUppercaseName);
+
     return 0;
 }
