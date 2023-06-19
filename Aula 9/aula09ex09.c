@@ -8,25 +8,26 @@ atual e gere outro arquivo contendo o nome e a idade.*/
 #include <stdlib.h>
 #include <time.h>
 
-FILE* openFile(char *name, const char * restrict mode) {
-    FILE* fname = fopen(name, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (fname == NULL) {
-        printf("File not found\n");
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return fname;
+    return filePtr;
 }
 
 int getAge(int bday, int bmonth, int byear) {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
-    int age;
+
     int currentDay = tm.tm_mday;
     int currentMonth = tm.tm_mon + 1;
     int currentYear = tm.tm_year + 1900;
+    int age;
 
     age = currentYear - byear;
 
@@ -38,7 +39,7 @@ int getAge(int bday, int bmonth, int byear) {
 }
 
 int main() {
-    FILE* usersData = openFile("users-data.txt", "r");
+    FILE* usersData = openFile("Files/users-data.txt", "r");
     FILE* newUsersData = openFile("new-users-data.txt", "w");
 
     char name[30];
