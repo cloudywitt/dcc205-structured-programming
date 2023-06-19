@@ -8,16 +8,11 @@ do arquivo.*/
 #include <stdlib.h>
 #include <string.h>
 
-void getStr(char *str, int size) {
-    fgets(str, size, stdin);
-    str[strcspn(str, "\n")] = '\0';
-}
-
-FILE* openFile(char *name, const char * restrict mode) {
+FILE* openFile(char* name, const char * restrict mode) {
     FILE* fname = fopen(name, mode);
 
     if (fname == NULL) {
-        printf("File not found\n");
+        printf("Error while oppening %s\n", name);
 
         exit(1);
     }
@@ -25,11 +20,42 @@ FILE* openFile(char *name, const char * restrict mode) {
     return fname;
 }
 
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
+int countWordInFile(char* word, char* fname) {
+    FILE* filePtr = openFile(fname, "r");
+
+    char buffer[250];
+    int occurrences = 0;
+
+    while (fgets(buffer, sizeof(buffer), filePtr) != NULL) {
+        char* wordPos = strstr(buffer, word);
+
+        // Counts the occurrences of the word in line
+        while (wordPos != NULL) {
+            occurrences++;
+
+            wordPos = strstr(wordPos + strlen(word), word);
+        }
+
+        if (feof(filePtr)) {
+            break;
+        }
+    }
+
+    fclose(filePtr);
+
+    return occurrences;
+}
+
 int main() {
-    // Get user inputs
+    // Input
     char fileName[30];
 
-    printf("Enter the name of a text file (with extension): ");
+    printf("Enter the file name (with extension): ");
     getStr(fileName, sizeof(fileName));
     
     char word[20];
@@ -38,24 +64,8 @@ int main() {
     getStr(word, sizeof(word));
     
     // File operation
-    FILE* filePtr = openFile(fileName, "r");
-
-    int occurrences = 0;
-
-    char buffer[250];
-
-    while (fgets(buffer, sizeof(buffer), filePtr) != NULL) {
-        char* wordPos = strstr(buffer, word);
-
-        while (wordPos != NULL) {
-            occurrences++;
-
-            wordPos = strstr(wordPos + strlen(word), word);
-        }
-    }
-
-    fclose(filePtr);
-
+    int occurrences = countWordInFile(word, fileName);
+    
     // Output
     printf("The word %s appears %d times in %s\n", word, occurrences, fileName);
 
