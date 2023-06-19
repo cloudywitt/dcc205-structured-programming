@@ -10,45 +10,55 @@ contendo os valores lidos do arquivo.*/
 #include <stdlib.h>
 #include <string.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* file = fopen(fname, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (file == NULL) {
-        printf("Couldn't open %s\n", fname);
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return file;
+    return filePtr;
+}
+
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
+void fprintMatrix(FILE* matrixPtr, int rows, int columns) {
+    int bufferMatrix[rows][columns];
+
+    printf("Matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            fscanf(matrixPtr, "%d", &bufferMatrix[i][j]);
+            printf("%d ", bufferMatrix[i][j]);
+        }
+
+        printf("\n");
+    }
 }
 
 int main() {
     char matrixFileName[30];
 
-    printf("Enter the name of the text file (with extension): ");
-    fgets(matrixFileName, sizeof(matrixFileName), stdin);
-    matrixFileName[strcspn(matrixFileName, "\n")] = '\0';
+    printf("Enter the file name (with extension): ");
+    getStr(matrixFileName, sizeof(matrixFileName));
 
-    FILE* matrixPtr = openFile(matrixFileName, "r");
+    // Get matrix size
+    FILE* matrixFilePtr = openFile(matrixFileName, "r");
 
     int matrixRow = 0;
     int matrixColumn = 0;
 
-    fscanf(matrixPtr, "%d %d", &matrixRow, &matrixColumn);
+    fscanf(matrixFilePtr, "%d %d", &matrixRow, &matrixColumn);
 
-    int m[matrixRow][matrixColumn];
-
-    printf("Matrix:\n");
-    for (int i = 0; i < matrixRow; i++) {
-        for (int j = 0; j < matrixColumn; j++) {
-            fscanf(matrixPtr, "%d", &m[i][j]);
-            printf("%d ", m[i][j]);
-        }
-
-        printf("\n");
-    }
-
-    fclose(matrixPtr);
+    // Print the matrix
+    fprintMatrix(matrixFilePtr, matrixRow, matrixColumn);
+    
+    fclose(matrixFilePtr);
 
     return 0;
 }
