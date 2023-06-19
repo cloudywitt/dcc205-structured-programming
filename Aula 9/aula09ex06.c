@@ -7,32 +7,37 @@ então exibe o total da compra.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* filePtr = fopen(fname, mode);
+FILE* openFile(char* name, const char * restrict mode) {
+    FILE* fname = fopen(name, mode);
 
-    if (filePtr == NULL) {
-        printf("Error while openning %s\n", fname);
+    if (fname == NULL) {
+        printf("Error while oppening %s\n", name);
 
         exit(1);
     }
 
-    return filePtr;
+    return fname;
 }
 
 int main() {
-    FILE* shoppingList = openFile("shopping-list.txt", "r");
+    FILE* shoppingListFilePtr = openFile("Files/shopping-list.txt", "r");
 
     char name[20];
     int quantity = 0;
-    float price = 0;
-    float totalPrice = 0;
+    float price = 0.0;
+    float totalCost = 0.0;
 
-    while (fscanf(shoppingList, "%s %d %f", name, &quantity, &price) != EOF) {
-        totalPrice += quantity * price;
+    while (fscanf(shoppingListFilePtr, "%s %d %f", name, &quantity, &price) != EOF) {
+        totalCost += quantity * price;
+
+        if (feof(shoppingListFilePtr)) {
+            break;
         }
+    }
     
-    printf("Total price: $%.2f\n", totalPrice);
-    fclose(shoppingList);
+    fclose(shoppingListFilePtr);
 
+    printf("Total: $%.2f\n", totalCost);
+    
     return 0;
 }
