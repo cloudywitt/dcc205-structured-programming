@@ -6,33 +6,42 @@ na tela a soma desses números.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* file = fopen(fname, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (file == NULL) {
-        printf("Couldn't open %s\n", fname);
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return file;
+    return filePtr;
 }
 
-int main() {
-    FILE* numbersBinPtr = openFile("numbers.bin", "rb");
+int sumFromBin(char* fname, int len) {
+    FILE* numbersBinPtr = openFile(fname, "rb");
 
-    int numbers[100];
+    int numbersBuffer[len];
 
-    fread(numbers, sizeof(int), 100, numbersBinPtr);
-
-    fclose(numbersBinPtr);
+    fread(numbersBuffer, sizeof(int), len, numbersBinPtr);
 
     int sum = 0;
 
     printf("The numbers: ");
-    for (int i = 0; i < 100; i++) {
-        sum += numbers[i];
+    for (int i = 0; i < len; i++) {
+        printf("%d ", numbersBuffer[i]);
+        sum += numbersBuffer[i];
     }
+
+    printf("\n");
+
+    fclose(numbersBinPtr);
+
+    return sum;
+}
+
+int main() {
+    int sum = sumFromBin("Files/numbers.bin", 100);
 
     printf("The sum is %d\n", sum);
 
