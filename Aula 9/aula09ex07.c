@@ -9,37 +9,43 @@ para cadastro. Crie um arquivo com essas informações, uma por linha. O usuári
 #include <stdbool.h>
 #include <string.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* filePtr = fopen(fname, mode);
+FILE* openFile(char* name, const char * restrict mode) {
+    FILE* fname = fopen(name, mode);
 
-    if (filePtr == NULL) {
-        printf("Error while openning %s\n", fname);
+    if (fname == NULL) {
+        printf("Error while oppening %s\n", name);
 
         exit(1);
     }
 
-    return filePtr;
+    return fname;
+}
+
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
 }
 
 int main() {
-    FILE* registration = openFile("registration.txt", "w");
+    FILE* registrationFilePtr = openFile("registration.txt", "w");
+    
     char name[50];
     int phoneNumber = 0;
 
     do {
+        //Input
         printf("Enter a name: ");
-        fgets(name, sizeof(name), stdin);
-        name[strcspn(name, "\n")] = '\0';
+        getStr(name, sizeof(name));
 
         printf("Enter a phone number (0 to exit): ");
         scanf("%d", &phoneNumber);
         getchar();
 
-        fprintf(registration, "%s\n%d\n", name, phoneNumber);
-
+        // Write to file
+        fprintf(registrationFilePtr, "%s\n%d\n", name, phoneNumber);
     } while (phoneNumber != 0);
 
-    fclose(registration);
+    fclose(registrationFilePtr);
     
     return 0;
 }
