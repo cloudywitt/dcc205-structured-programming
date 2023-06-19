@@ -9,7 +9,7 @@ quantas vogais esse arquivo possui.*/
 #include <ctype.h>
 #include <string.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
+FILE* openFile(char* fname, const char * restrict mode) {
     FILE* filePtr = fopen(fname, mode);
 
     if (filePtr == NULL) {
@@ -37,8 +37,9 @@ bool isVowel(char ch) {
     return isVowel;
 }
 
-int countVowels(char fname[]) {
+int countVowels(char* fname) {
     FILE* file = openFile(fname, "r");
+
     char c;
     int vowelCount = 0;
 
@@ -52,7 +53,6 @@ int countVowels(char fname[]) {
         if (isVowel(c)) {
             vowelCount++;           
         }
-
     }
 
     fclose(file);
@@ -60,14 +60,18 @@ int countVowels(char fname[]) {
     return vowelCount;
 }
 
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
 int main() {
     char fileName[50];
 
-    printf("Enter a text file name (with extension): ");
-    fgets(fileName, sizeof(fileName), stdin);
-    fileName[strcspn(fileName, "\n")] = '\0';
+    printf("Enter a file name (with extension): ");
+    getStr(fileName, sizeof(fileName));
 
-    int vowelQuantity = countVowels(fileName);
+    int vowelCount = countVowels(fileName);
 
-    printf("There are %d vowels in %s\n", vowelQuantity, fileName);
+    printf("There are %d vowels in %s\n", vowelCount, fileName);
 }
