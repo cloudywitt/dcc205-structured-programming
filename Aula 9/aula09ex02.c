@@ -8,12 +8,7 @@ primeiro seguido do conteúdo do segundo).*/
 #include <stdlib.h>
 #include <string.h>
 
-void getStr(char *str, int size) {
-    fgets(str, size, stdin);
-    str[strcspn(str, "\n")] = '\0';
-}
-
-FILE* openFile(char *name, const char * restrict mode) {
+FILE* openFile(char* name, const char * restrict mode) {
     FILE* fname = fopen(name, mode);
 
     if (fname == NULL) {
@@ -25,18 +20,42 @@ FILE* openFile(char *name, const char * restrict mode) {
     return fname;
 }
 
-void copyFile(FILE *firstFile, FILE *secondFile) {
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
+void fcopy(FILE* source, FILE* detination) {
     char buffer[250];
 
-    while (fgets(buffer, sizeof(buffer), firstFile) != NULL) { 
-        fprintf(secondFile, "%s", buffer);
+    while (fgets(buffer, sizeof(buffer), source) != NULL) { 
+        fprintf(detination, "%s", buffer);
     }
+}
 
+void fmerge(char* fname1, char* fname2) {
+    // Writes the first file to the final file
+    FILE* file1Ptr = openFile(fname1, "r");
+    FILE* finalFilePtr = openFile("files-merged.txt", "a");
+
+    fcopy(file1Ptr, finalFilePtr);
+
+    fclose(file1Ptr);
+    
+    // Writes the second file to the final file
+    FILE* file2Ptr = openFile(fname2, "r");
+
+    fcopy(file2Ptr, finalFilePtr);
+
+    fclose(file2Ptr);
+    fclose(finalFilePtr);
+
+    printf("Check files-merged.txt\n");
 }
 
 int main() {
-    // Get user input
-    printf("Enter the name of two text files plus their extension\n");
+    // Input
+    printf("Enter the name of two files (with extension)\n");
 
     char firstFileName[30];
 
@@ -48,24 +67,8 @@ int main() {
     printf("File 2: ");
     getStr(secondFileName, sizeof(secondFileName));
 
-    // File operation
-    FILE* firstFilePtr = openFile(firstFileName, "r");
-    FILE* secondFilePtr = openFile(secondFileName, "r");
-    FILE* filesMergePtr = openFile("files-merged.txt", "w");
-
-    copyFile(firstFilePtr, filesMergePtr);
-
-    fclose(firstFilePtr);
-    fclose(filesMergePtr);
-
-    filesMergePtr = openFile("files-merged.txt", "a");
-    copyFile(secondFilePtr, filesMergePtr);
-
-    fclose(secondFilePtr);
-    fclose(filesMergePtr);
-
-    // Output
-    printf("The files were merged succesfully!\n");
+    // Main
+    fmerge(firstFileName, secondFileName);
 
     return 0;
 }
