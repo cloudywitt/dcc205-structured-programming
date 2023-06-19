@@ -8,16 +8,16 @@ exiba os dados lidos em tela.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* file = fopen(fname, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (file == NULL) {
-        printf("Couldn't open %s\n", fname);
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return file;
+    return filePtr;
 }
 
 typedef struct {
@@ -27,16 +27,22 @@ typedef struct {
 } Student;
 
 int main() {
-    FILE* studentsPtr = openFile("students-registration.txt", "r");
+    FILE* studentsInfoPtr = openFile("Files/students-info.txt", "r");
 
     Student students[4];
 
     int i = 0;
 
-    while (fscanf(studentsPtr, "%u %s %f %f %f", &students[i].id, students[i].name, &students[i].scores[0], &students[i].scores[1], &students[i].scores[2]) != EOF) {
+    // Read students' data
+    while (fscanf(studentsInfoPtr, "%u %s %f %f %f", &students[i].id, students[i].name, &students[i].scores[0], &students[i].scores[1], &students[i].scores[2]) != EOF) {
         i++;
+
+        if (feof(studentsInfoPtr)) {
+            break;
+        }
     }
 
+    // Print the data
     printf("--------------------\n");
     for (int i = 0; i < 4; i++) {
         printf("ID: %u\n", students[i].id);
@@ -45,6 +51,8 @@ int main() {
         printf("--------------------\n");
 
     }
+
+    fclose(studentsInfoPtr);
 
     return 0;
 }
