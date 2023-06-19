@@ -19,7 +19,7 @@ FILE* openFile(char *fname, const char * restrict mode) {
     return file;
 }
 
-int findMaxArray(int array[], int size) {
+int findMaxArray(int* array, int size) {
     int max;
 
     for (int i = 0; i < size; i++) {
@@ -33,7 +33,7 @@ int findMaxArray(int array[], int size) {
     return max;
 }
 
-int findMinArray(int array[], int size) {
+int findMinArray(int* array, int size) {
     int min;
 
     for (int i = 0; i < size; i++) {
@@ -48,17 +48,26 @@ int findMinArray(int array[], int size) {
 }
 
 int main() {
-    FILE* numBinPtr = openFile("numbers2.bin", "rw");
+    FILE* numBinPtr = openFile("Files/numbers2.bin", "rw");
 
+    // Find range (the first number)
     int range = 0;
 
     fread(&range, sizeof(int), 1, numBinPtr);
 
+    // Reads the numbers
     int nums[range];
 
     fread(nums, sizeof(int), range, numBinPtr);
 
     fclose(numBinPtr);
+
+    // Output
+    int largest = findMaxArray(nums, range);
+    int smallest = findMinArray(nums, range);
+
+    printf("The largest number is %d\n", largest);
+    printf("The smallest number is %d\n", smallest);
 
     return 0;
 }
