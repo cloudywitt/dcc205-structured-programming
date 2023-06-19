@@ -7,35 +7,49 @@ texto. O usuário deverá informar o nome do arquivo.*/
 #include <stdlib.h>
 #include <string.h>
 
-FILE* openFile(char *fname, const char * restrict mode) {
-    FILE* file = fopen(fname, mode);
+FILE* openFile(char* fname, const char * restrict mode) {
+    FILE* filePtr = fopen(fname, mode);
 
-    if (file == NULL) {
-        printf("Couldn't open %s\n", fname);
+    if (filePtr == NULL) {
+        printf("Error while openning %s\n", fname);
 
         exit(1);
     }
 
-    return file;
+    return filePtr;
 }
 
-int main() {
-    char fileName[30];
-
-    printf("Enter a txt file name (with extension): ");
-    fgets(fileName, sizeof(fileName), stdin);
-    fileName[strcspn(fileName, "\n")] = '\0';   
-
-    FILE* filePtr = openFile(fileName, "r");
+int fcountWords(char* fname) {
+    FILE* filePtr = openFile(fname, "r");
 
     char buffer[250];
-    int wordsCount = 0;
+    int wordCount = 0;
 
     while (fscanf(filePtr, "%s", buffer) != EOF) {
-        wordsCount++;
+        wordCount++;
+
+        if (feof(filePtr)) {
+            break;
+        }
     }
 
     fclose(filePtr);
+
+    return wordCount;
+}
+
+int main() {
+    // Input
+    char fileName[30];
+
+    printf("Enter the file name (with extension): ");
+    fgets(fileName, sizeof(fileName), stdin);
+    fileName[strcspn(fileName, "\n")] = '\0';   
+
+    // File operations
+    int wordsCount = fcountWords(fileName);
+
+    // Output
     printf("There are %d words in %s\n", wordsCount, fileName);
 
     return 0;
