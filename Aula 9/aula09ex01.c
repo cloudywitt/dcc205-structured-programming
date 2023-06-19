@@ -7,16 +7,11 @@ mostre na tela quantas linhas esse arquivo possui.*/
 #include <string.h>
 #include <stdlib.h>
 
-void getStr(char *str, int size) {
-    fgets(str, size, stdin);
-    str[strcspn(str, "\n")] = '\0';
-}
-
-FILE* openFile(char *name, const char * restrict mode) {
+FILE* openFile(char* name, const char * restrict mode) {
     FILE* fname = fopen(name, mode);
 
     if (fname == NULL) {
-        printf("File not found\n");
+        printf("Error while oppening %s\n", name);
 
         exit(1);
     }
@@ -24,27 +19,40 @@ FILE* openFile(char *name, const char * restrict mode) {
     return fname;
 }
 
-int main() {
-    // Input
-    char fileName[30];
-
-    printf("Enter a file name (with extension): ");
-    getStr(fileName, sizeof(fileName));
-
-    // File operation
-    FILE* userFile = openFile(fileName, "r");
+int fcountLines(char* fname, int size) {
+    FILE* userFile = openFile(fname, "r");
 
     char buffer[255];
     int linesCount = 0;
 
     while (fgets(buffer, sizeof(buffer), userFile) != NULL) {
         linesCount++;
+
+        if (feof(userFile)) {
+            break;
+        }
     }
 
     fclose(userFile);
 
-    // Output
-    printf("The file has %d lines\n", linesCount);
+    return linesCount;
+}
+
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
+
+int main() {
+    char fileName[30];
+
+    printf("Enter a file name (with extension): ");
+    getStr(fileName, sizeof(fileName));
+
+    int linesCount = fcountLines(fileName, sizeof(fileName));
+    
+    printf("%s has %d lines\n", fileName, linesCount);
 
     return 0;
 }
