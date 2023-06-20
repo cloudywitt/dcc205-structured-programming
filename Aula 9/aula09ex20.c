@@ -28,7 +28,7 @@ typedef struct {
 } Athlete;
 
 int main() {
-    FILE* athletesFilePtr = openFile("athletes-info.bin", "rb");
+    FILE* athletesFilePtr = openFile("Files/athletes-info.bin", "rb");
 
     Athlete athletes[5];
 
