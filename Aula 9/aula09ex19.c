@@ -20,27 +20,45 @@ FILE* openFile(char *fname, const char * restrict mode) {
     return file;
 }
 
-typedef struct {
+void getStr(char* str, int size) {
+    fgets(str, size, stdin);
+    str[strcspn(str, "\n")] = '\0';
+}
+
+struct Athlete;
+
+void writeAThletes(char* fname, struct Athlete* athletes, int numberOfAthletes);
+
+struct Athlete {
     char name[30];
     char sport[20];
     int age;
     float height;
-} Athlete;
+};
+
+void writeAThletes(char* fname, struct Athlete* athletes, int numberOfAthletes) {
+    FILE* athletesPtr = openFile(fname, "wb");
+    
+    int structuresWritten = fwrite(athletes, sizeof(struct Athlete), numberOfAthletes, athletesPtr);
+
+    if (structuresWritten == 0) {
+        printf("Error while writing to file\n");
+    }
+
+    fclose(athletesPtr);
+}
 
 int main() {
-    Athlete athletes[5];
+    struct Athlete athletes[5];
 
-    FILE* athletesFilePtr = openFile("athletes-info.bin", "wb");
-
+    // Input
     for (int i = 0; i < 5; i++) {
         printf("Enter athelete %d stats:\n", i + 1);
         printf("Name: ");
-        fgets(athletes[i].name, sizeof(athletes[i].name), stdin);
-        athletes[i].name[strcspn(athletes[i].name, "\n")] = '\0';
+        getStr(athletes[i].name, sizeof(athletes[i].name));
 
         printf("Sport: ");
-        fgets(athletes[i].sport, sizeof(athletes[i].sport), stdin);
-        athletes[i].sport[strcspn(athletes[i].sport, "\n")] = '\0';
+        getStr(athletes[i].sport, sizeof(athletes[i].sport));
 
         printf("Age: ");
         scanf("%d", &athletes[i].age);
@@ -50,13 +68,8 @@ int main() {
         getchar();
     }
 
-    int structuresWritten = fwrite(athletes, sizeof(Athlete), 5, athletesFilePtr);
-
-    if (structuresWritten == 0) {
-        printf("Error while writing to file\n");
-    }
-
-    fclose(athletesFilePtr);
+    // File operation
+    writeAThletes("Files/athletes-info.bin", athletes, 5);
 
     return 0;
 }
